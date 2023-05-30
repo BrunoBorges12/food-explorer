@@ -5,3 +5,7 @@
 body {
   @apply bg-dark-400;
 }
+
+input::placeholder {
+  @apply text-light-400  font-roboto text-sm;
+}

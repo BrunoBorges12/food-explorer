@@ -10,7 +10,7 @@ function Button({ title, size, color, mobile }: propsButton) {
   return (
     <button
       className={classNames(
-        " py-3 flex items-center justify-center   relative  rounded-md hover:opacity-80 transition-all duration-500",
+        " py-3 w-full flex items-center justify-center   relative  rounded-md hover:opacity-80 transition-all duration-500",
         {
           "bg-tomato-100": color === "tomato-dark",
           "bg-tomato-400": color === "tomato-ligth",

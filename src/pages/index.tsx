@@ -1,9 +1,9 @@
-import Button from "@/components/Button";
+import { AuthForm } from "@/components/AuthForm";
 
 export default function Home() {
   return (
-    <div className="  w-full h-full   flex  flex-col items-center justify-center my-16 ">
-      <Button title="Criar uma conta" size="medium" color="tomato-dark" />
+    <div className="  w-screen h-screen  bg-dark-400  flex   flex-col items-center justify-center">
+      <AuthForm signUp={false} />
     </div>
   );
 }

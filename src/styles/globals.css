@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.test {
-  position: absolute;
-  width: 251.24px;
-  height: 251.24px;
-
-  /* Gradients/100 */
-
-  /* Light/Light 100
-
-#FFFFFF
-*/
-  border: 1px dashed #ffffff;
-  border-radius: 2512.4px;
+body {
+  @apply bg-dark-400;
 }

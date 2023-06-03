@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { withSessionRoute } from "../../lib/config/withSession";
-import axios from "axios";
 import { setCookie } from "nookies";
 import jwtDecode from "jwt-decode";
 
@@ -9,23 +8,23 @@ export default withSessionRoute(createSessionRoute);
 async function createSessionRoute(req: any, res: any) {
   if (req.method === "POST") {
     const { email, password } = req.body;
-    console.log("email", email, "passowrd", password);
-    let token; // Declare a variável token
+    console.log("email", email, "password", password);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/register", {
-        password,
-        email,
+      const response = await fetch("http://127.0.0.1:8000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          password,
+          email,
+        }),
       });
-      console.log("response ", response);
 
-      token = response.data.token; // Atribua o valor de token
-      if (token) {
-        const expirationDate = new Date(); // Obtém a data e hora atual
-        expirationDate.setMinutes(expirationDate.getMinutes() + 1); // Adiciona 1 minuto ao horário atual
-
-        // Ajusta o fuso horário para Brasília (UTC-3)
-        expirationDate.setUTCHours(expirationDate.getUTCHours() - 3);
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
 
         // Armazena o token em um cookie seguro
         const date = new Date();
@@ -37,26 +36,22 @@ async function createSessionRoute(req: any, res: any) {
           path: "/", // Define o escopo do cookie
         });
 
-        const tokenCookie: any = jwtDecode(token); // Use a variável token já declarada
+        const tokenCookie: any = jwtDecode(token);
 
         const now = Date.now();
         if (tokenCookie.exp * 1000 > now) {
           req.session.user = token;
           await req.session.save();
-          // O token ainda está válido
           res.status(200).json({ message: "Login bem-sucedido" });
         } else {
-          // O token expirou
           res.status(405).json({ message: "Token expirado" });
         }
       } else {
         console.log("Credenciais inválidas");
-
         res.status(401).json({ message: "Credenciais inválidas" });
       }
     } catch (error) {
       console.log(error);
-
       res.status(505).json({ message: error });
     }
   }

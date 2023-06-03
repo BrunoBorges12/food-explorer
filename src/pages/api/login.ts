@@ -55,7 +55,7 @@ async function createSessionRoute(req: any, res: any) {
         res.status(401).json({ message: "Credenciais inválidas" });
       }
     } catch (error) {
-      console.log("Erro ao autenticar");
+      console.log(error);
 
       res.status(505).json({ message: error });
     }

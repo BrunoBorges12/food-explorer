@@ -1,10 +1,16 @@
 module.exports = {
   reactStrictMode: true,
-  async rewrites() {
+
+  async headers() {
     return [
       {
-        source: "/:path*",
-        destination: "http://127.0.0.1:8000/:path*", // Redireciona todas as rotas para a API
+        source: "/api/login",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+        ],
       },
     ];
   },

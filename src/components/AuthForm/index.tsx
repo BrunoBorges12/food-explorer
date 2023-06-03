@@ -34,12 +34,9 @@ export const AuthForm = ({ signUp }: propsAuth) => {
           router.push("/login");
         }
       } else {
-        console.log(process.env.NEXT_SERVER_API_URL);
+        console.log("ok");
         setLoading(true);
-        const response = await axios.post(
-          `${"http://127.0.0.1:8000"}/login`,
-          data
-        );
+        const response = await axios.post("/api/login", data);
         if (response.status === 200) {
           router.push("/");
         }

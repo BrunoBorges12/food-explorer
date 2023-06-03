@@ -5,13 +5,14 @@ type propLogo = {
 };
 export const Logo = ({ size }: propLogo) => {
   return (
-    <div className=" flex items-center gap-3">
+    <div className=" flex items-center  gap-3  lg:m-0 lg:gap-3">
       <svg
         viewBox="0 0 27 31"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={classNames({
-          "w-[3.089rem] h-[2.969rem]": size === "medium",
+          " w-[43.31px] h-[43.31px] lg:h-[2.969rem] lg:w-[3.089rem]   ":
+            size === "medium",
           " w-8  h-8": size === "small",
         })}
       >
@@ -23,8 +24,8 @@ export const Logo = ({ size }: propLogo) => {
 
       <h1
         className={classNames(
-          " font-roboto font-bold  text-light-100",
-          size === "small" ? "text-lg " : "text-2xl"
+          " font-roboto font-bold  text-light-100 ",
+          size === "small" ? "text-lg " : " text-xl lg:text-2xl"
         )}
       >
         food explorer

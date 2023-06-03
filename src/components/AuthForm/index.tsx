@@ -4,6 +4,7 @@ import Button from "../Button";
 import Input from "../Input";
 import { useForm, FormProvider } from "react-hook-form";
 import axios from "axios";
+import { useState } from "react";
 
 type propsAuth = {
   signUp: boolean;
@@ -19,6 +20,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
   const router = useRouter();
   const methods = useForm<formValues>();
   const { handleSubmit, setError } = methods;
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data: formValues) => {
     try {
@@ -32,12 +34,21 @@ export const AuthForm = ({ signUp }: propsAuth) => {
           router.push("/login");
         }
       } else {
+        setLoading(true);
         const response = await axios.post("/api/login", data);
         if (response.status === 200) {
           router.push("/");
         }
       }
     } catch (error: any) {
+      setTimeout(() => {
+        setLoading(false);
+        if (error.response.status === 401) {
+          setError("password", { message: "Email ou senha Incorreto" });
+          setError("email", { message: "Email ou senha Incorreto" });
+        }
+      }, 500);
+
       if (error.response.status === 409) {
         setError("email", { message: "Esse email já existe" });
       }
@@ -46,8 +57,8 @@ export const AuthForm = ({ signUp }: propsAuth) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="shadow-2xl shadow-dark-800 rounded relative max-w-[29.8rem] w-full bg-dark-700 flex flex-col font-poppins justify-center items-center p-16 gap-8">
-          <h2 className="text-xl text-light-100">
+        <div className="lg:shadow-2xl lg:shadow-dark-800 rounded relative max-w-[29.8rem] w-full  flex flex-col font-poppins justify-center items-center p-10 lg:p-16 lg:bg-dark-700 gap-8">
+          <h2 className="text-xl text-light-100 hidden lg:block">
             {signUp ? "Crie sua conta" : "Faça login"}
           </h2>
           {signUp && (
@@ -78,7 +89,8 @@ export const AuthForm = ({ signUp }: propsAuth) => {
           <Button
             color="tomato-dark"
             size="medium"
-            title={signUp ? "Criar conta" : "Entrar"}
+            title={signUp ? "Criar conta" : "criar conta"}
+            loading={loading}
           />
           <span className="hover:underline text-light-100 font-medium">
             <a href={signUp ? "/login" : "/registrer"}>

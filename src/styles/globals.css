@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-dark-400;
+  @apply bg-dark-400 overflow-hidden;
 }
 
 input::placeholder {

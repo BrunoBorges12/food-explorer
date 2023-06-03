@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { withSessionRoute } from "../../lib/config/withSession";
 import axios from "axios";
-import { setCookie, parseCookies } from "nookies";
+import { setCookie } from "nookies";
 import jwtDecode from "jwt-decode";
 
 export default withSessionRoute(createSessionRoute);
 
 async function createSessionRoute(req: any, res: any) {
   if (req.method === "POST") {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
     let token; // Declare a variável token
 
     try {

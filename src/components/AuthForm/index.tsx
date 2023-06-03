@@ -37,7 +37,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
         console.log(process.env.NEXT_SERVER_API_URL);
         setLoading(true);
         const response = await axios.post(
-          `${process.env.NEXT_SERVER_API_URL}/login`,
+          `${"http://127.0.0.1:8000"}/login`,
           data
         );
         if (response.status === 200) {

@@ -9,6 +9,7 @@ export default withSessionRoute(createSessionRoute);
 async function createSessionRoute(req: any, res: any) {
   if (req.method === "POST") {
     const { email, password } = req.body;
+    console.log("email", email, "passowrd", password);
     let token; // Declare a variável token
 
     try {
@@ -16,6 +17,7 @@ async function createSessionRoute(req: any, res: any) {
         password,
         email,
       });
+      console.log("response ", response);
 
       token = response.data.token; // Atribua o valor de token
       if (token) {
@@ -48,9 +50,13 @@ async function createSessionRoute(req: any, res: any) {
           res.status(405).json({ message: "Token expirado" });
         }
       } else {
+        console.log("Credenciais inválidas");
+
         res.status(401).json({ message: "Credenciais inválidas" });
       }
     } catch (error) {
+      console.log("Erro ao autenticar");
+
       res.status(401).json({ message: "Erro ao autenticar" });
     }
   }

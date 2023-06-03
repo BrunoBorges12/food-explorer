@@ -8,6 +8,7 @@ export default withSessionRoute(createSessionRoute);
 
 async function createSessionRoute(req: any, res: any) {
   if (req.method === "POST") {
+    console.log("teste");
     const { email, password } = req.body;
     let token; // Declare a variável token
 

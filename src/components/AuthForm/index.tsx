@@ -41,6 +41,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
         }
       }
     } catch (error: any) {
+      console.log(error);
       setTimeout(() => {
         setLoading(false);
         if (error.response.status === 401) {

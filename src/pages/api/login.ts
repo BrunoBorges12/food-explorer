@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { withSessionRoute } from "../../lib/config/withSession";
+import axios from "axios";
 import { setCookie } from "nookies";
 import jwtDecode from "jwt-decode";
 
@@ -7,10 +8,19 @@ export default withSessionRoute(createSessionRoute);
 
 async function createSessionRoute(req: any, res: any) {
   if (req.method === "POST") {
+    const { email, password } = req.body;
     let token; // Declare a variável token
 
     try {
-      token = "1212121212"; // Atribua o valor de token
+      const response = await axios.post(
+        `${process.env.NEXT_SERVER_API_URL}/login`,
+        {
+          password,
+          email,
+        }
+      );
+
+      token = response.data.token; // Atribua o valor de token
       if (token) {
         const expirationDate = new Date(); // Obtém a data e hora atual
         expirationDate.setMinutes(expirationDate.getMinutes() + 1); // Adiciona 1 minuto ao horário atual

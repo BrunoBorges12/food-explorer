@@ -57,7 +57,7 @@ async function createSessionRoute(req: any, res: any) {
     } catch (error) {
       console.log("Erro ao autenticar");
 
-      res.status(500).json({ message: error });
+      res.status(505).json({ message: error });
     }
   }
 }

@@ -18,6 +18,7 @@ export const getServerSideProps = withSessionSsr(async ({ req }) => {
   const cookies = parseCookies({ req });
   const token = cookies.token ? cookies.token : undefined;
   const user = req.session?.user;
+  console.log(user);
 
   console.log("token", token);
 

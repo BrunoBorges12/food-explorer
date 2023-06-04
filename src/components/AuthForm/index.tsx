@@ -56,6 +56,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
       }
     }
   };
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,6 +70,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
                 type="text"
                 label="Seu nome"
                 name="name"
+                minLength={2}
                 placeholder="Exemplo: Maria da Silva"
                 required={true}
               />
@@ -82,6 +84,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
             required={true}
           />
           <Input
+            minLength={6}
             type="password"
             label="Senha"
             name="password"
@@ -91,7 +94,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
           <Button
             color="tomato-dark"
             size="medium"
-            title={signUp ? "Criar conta" : "criar conta"}
+            title={signUp ? "Criar conta" : "Entra na conta"}
             loading={loading}
           />
           <span className="hover:underline text-light-100 font-medium">

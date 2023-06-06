@@ -30,7 +30,7 @@ function Button({
         },
         {
           "px-6   lg:px-8": size === "small" && mobile,
-          "px-6": size === "small",
+          "": size === "small",
           "px-8": size === "medium",
         },
         widthFull ? "w-full  " : "",
@@ -93,7 +93,7 @@ function Button({
         </>
       ) : (
         <>
-          <span className=" mx-1 capitalize text-light-100 text-sm  font-poppins  hover:opacity-80 font-medium">
+          <span className=" mx-1 capitalize text-light-100 text-sm  whitespace-nowrap font-poppins  hover:opacity-80 font-medium">
             {title}
           </span>
           <span className="text-light-100 ml">{checkout ? "(0)" : ""}</span>

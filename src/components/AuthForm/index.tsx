@@ -96,6 +96,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
             size="medium"
             title={signUp ? "Criar conta" : "Entra na conta"}
             loading={loading}
+            widthFull={true}
           />
           <span className="hover:underline text-light-100 font-medium">
             <a href={signUp ? "/login" : "/registrer"}>

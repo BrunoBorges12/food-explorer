@@ -14,7 +14,12 @@ export const NavBar = ({ admin }: propsNavbar) => {
   return (
     <header className="  w-full  bg-dark-600 lg:items-center    ">
       <div className="   flex  gap-8  px-7  z-50 bg-dark-600  relative  py-6  lg:items-center lg:justify-center  lg:px-32">
-        <div className="flex items-center w-full justify-between lg:gap-16 lg:justify-normal relative">
+        <div
+          className={classNames(
+            "flex items-center w-full justify-between  lg:justify-normal relative",
+            admin ? "lg:gap-16" : "lg:gap-10"
+          )}
+        >
           {!isOpen ? (
             <>
               <GiHamburgerMenu

@@ -32,7 +32,7 @@ export const Logo = ({ size, className, admin }: propLogo) => {
 
         <h1
           className={classNames(
-            " font-roboto font-bold  text-light-100 ",
+            " font-roboto font-bold  text-light-100 whitespace-nowrap ",
             size === "small"
               ? "  text-base1 lg:text-lg  "
               : " text-xl lg:text-2xl"
@@ -47,7 +47,7 @@ export const Logo = ({ size, className, admin }: propLogo) => {
         )}
       </div>
       {admin && (
-        <span className=" capitalize  -tracking-tight text-cake-200   text-right font-roboto text-sm  mt-0 relative flex-shrink flex-grow hidden lg:block">
+        <span className=" capitalize  -tracking-tight text-cake-200   text-right font-roboto text-xs  mt-0 relative hidden lg:block">
           admin
         </span>
       )}

@@ -34,20 +34,20 @@ export const Logo = ({ size, className, admin }: propLogo) => {
           className={classNames(
             " font-roboto font-bold  text-light-100 whitespace-nowrap ",
             size === "small"
-              ? "  text-base1 lg:text-lg  "
-              : " text-xl lg:text-2xl"
+              ? "  text-base1 leading-none lg:text-lg  "
+              : " text-xl  leading-none lg:text-2xl"
           )}
         >
           food explorer
         </h1>
         {admin && (
-          <span className=" capitalize  -tracking-tight text-cake-200   text-right font-roboto text-sm  mt-0 relative flex-shrink flex-grow  lg:hidden">
+          <span className=" capitalize leading-none  -tracking-tight text-cake-200   text-right font-roboto text-sm  mt-0 relative flex-shrink flex-grow  lg:hidden">
             admin
           </span>
         )}
       </div>
       {admin && (
-        <span className=" capitalize  -tracking-tight text-cake-200   text-right font-roboto text-xs  mt-0 relative hidden lg:block">
+        <span className=" capitalize leading-none  -tracking-tight text-cake-200   text-right font-roboto text-xs  mt-0 relative hidden lg:block">
           admin
         </span>
       )}

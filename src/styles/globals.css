@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-dark-400 overflow-hidden;
+  @apply bg-dark-400;
 }
 
 input::placeholder {
@@ -14,8 +14,6 @@ input::placeholder {
   background: linear-gradient(180deg, #091e26 0%, #00131c 100%);
 }
 .bannerimg {
-  position: absolute;
-
   opacity: 0.8;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }

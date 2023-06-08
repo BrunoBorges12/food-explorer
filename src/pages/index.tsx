@@ -8,20 +8,18 @@ export default function Home() {
     <>
       <NavBar admin={true} />;
       <Container>
-        <div className=" overflow-visible  my-44  text-light-100 relative  w-full  h-[260px] select-none">
-          <div className=" relative rounded-lg banner w-full h-[120px] lg:w-[1120px]  lg:h-[260px] flex">
-            <div className="  w-1/2 lg:w-1/2">
+        <div className=" my-44  text-light-100 relative  h-full w-full   max-w-full select-none">
+          <div className="  rounded-lg banner w-full h-[160px]  flex lg:h-[260px]">
+            <div className="  w-1/2 lg:w-5/12 ">
               <img
                 src="/doces.png  "
-                className=" bannerimg w-[129px] left-[-10px] h-[272px] top-[-44px] lg:left-[-48px] lg:top-[-171px] lg:h-auto lg:w-[632px]
+                className=" bannerimg  top-[-52px] left-[-20px] relative md:w-[332px] lg:left-0 lg:top-[-110px] lg:h-auto lg:w-[632px]
               "
               ></img>
             </div>
-            <div className="  flex flex-col justify-center w-full lg:w-1/2 lg:m-0  lg:items-center ">
-              <h1 className=" text-sm lg:text-2xl font-poppins">
-                Sabores inigualáveis
-              </h1>
-              <h2 className=" text-xs">
+            <div className="  flex flex-col justify-center font-poppins lg:m-0  lg:items-center ">
+              <h1 className=" text-lg lg:text-2xl ">Sabores inigualáveis</h1>
+              <h2 className=" text-base">
                 Sinta o cuidado do preparo com ingredientes selecionados
               </h2>
             </div>

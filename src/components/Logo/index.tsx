@@ -7,7 +7,7 @@ type propLogo = {
 };
 export const Logo = ({ size, className, admin }: propLogo) => {
   return (
-    <div className="flex flex-col  justify-center">
+    <div className="flex lg:flex-col">
       <div
         className={classNames(
           className,
@@ -18,36 +18,31 @@ export const Logo = ({ size, className, admin }: propLogo) => {
           viewBox="0 0 27 31"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={classNames({
-            " w-[43.31px] h-[43.31px] lg:h-[2.969rem] lg:w-[3.089rem]   ":
-              size === "medium",
-            " w-7 h-7": size === "small",
-          })}
+          className={classNames(
+            " mr-[10px]",
+            size === "small"
+              ? " w-[1.538rem] h-[1.538rem] lg:w-[1.875rem] lg:h-[1.875rem]"
+              : " h-[2.707rem] w-[2.707rem] lg:h-[2.969rem] lg:w-[3.089rem]"
+          )}
         >
           <path
             d="M13.5391 0.744385L26.5294 8.24438V23.2444L13.5391 30.7444L0.548681 23.2444V8.24438L13.5391 0.744385Z"
-            fill="#4D585E"
+            className=" fill-cake-100"
           />
         </svg>
-
         <h1
           className={classNames(
-            " font-roboto font-bold  text-light-100 whitespace-nowrap ",
+            " font-roboto text-light-100 font-bold",
             size === "small"
-              ? "  text-base1 leading-none lg:text-lg  "
-              : " text-xl  leading-none lg:text-2xl"
+              ? " text-[1.323rem]  lg:text-lg"
+              : "  text-[2.328rem]  leading-[2.728rem] lg:text-2xl"
           )}
         >
           food explorer
         </h1>
-        {admin && (
-          <span className=" capitalize leading-none  -tracking-tight text-cake-200   text-right font-roboto text-sm  mt-0 relative flex-shrink flex-grow  lg:hidden">
-            admin
-          </span>
-        )}
       </div>
       {admin && (
-        <span className=" capitalize leading-none  -tracking-tight text-cake-200   text-right font-roboto text-xs  mt-0 relative hidden lg:block">
+        <span className=" text-cake-200 leading-[1.2rem] text-end w-full">
           admin
         </span>
       )}

@@ -18,7 +18,7 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ["var(--poppins-font)", ...fontFamily.serif],
-        roboto: '["var(--roboto-font)"]',
+        roboto: ["var( --roboto-font)"],
       },
       lineHeight: {
         "160%": "160%",

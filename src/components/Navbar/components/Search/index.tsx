@@ -1,7 +1,14 @@
 import { BsSearch } from "react-icons/bs";
-export const Search = () => {
+type propsSearch = {
+  className?: string;
+};
+export const Search = ({ className }: propsSearch) => {
   return (
-    <div className=" self-center bg-dark-900 rounded-md py-3 px-4   w-full   ">
+    <div
+      className={
+        " self-center bg-dark-900 rounded-md py-3 px-4   w-full   " + className
+      }
+    >
       <label className="flex  gap-4 ml-4 w-full">
         <BsSearch className="w-6 h-6 text-light-400 " />
         <input

@@ -6,7 +6,7 @@ export const IconLogout = () => {
       viewBox="0 0 25 24"
       fill="none"
       className={classNames(
-        "lg:w-12 lg:h-12 cursor-pointer  hover:opacity-50 transition-all"
+        " w-7 h-7 cursor-pointer  hover:opacity-50 transition-all lg:w-14 lg:h-14"
       )}
       xmlns="http://www.w3.org/2000/svg"
     >

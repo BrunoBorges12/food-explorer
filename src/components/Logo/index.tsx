@@ -11,7 +11,7 @@ export const Logo = ({ size, className, admin }: propLogo) => {
       <div
         className={classNames(
           className,
-          " flex items-center   gap-3  lg:m-0 lg:gap-2"
+          " flex items-center    lg:m-0 lg:gap-2"
         )}
       >
         <svg

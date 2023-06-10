@@ -1,16 +1,12 @@
 import classNames from "classnames";
 
-type propsMobile = {
-  mobile?: boolean;
-};
-export const IconLogout = ({ mobile }: propsMobile) => {
+export const IconLogout = () => {
   return (
     <svg
       viewBox="0 0 25 24"
       fill="none"
       className={classNames(
-        "cursor-pointer hidden lg:block ",
-        mobile ? "w-8 h-8" : "lg:w-6 lg:h-5"
+        "lg:w-12 lg:h-12 cursor-pointer  hover:opacity-50 transition-all"
       )}
       xmlns="http://www.w3.org/2000/svg"
     >

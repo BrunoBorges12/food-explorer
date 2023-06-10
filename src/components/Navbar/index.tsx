@@ -1,7 +1,9 @@
 import Button from "../Button";
 import { Container } from "../Container";
 import { Logo } from "../Logo";
+import { IconLogout } from "./components/IconLogout";
 import { Search } from "./components/Search";
+import { FiUser } from "react-icons/fi";
 type propsNavbar = {
   admin?: boolean;
 };
@@ -13,7 +15,7 @@ export const NavBar = ({ admin }: propsNavbar) => {
           <div>
             <Logo size="small" admin={false} />
           </div>
-          <div className=" flex justify-between  w-full gap-14">
+          <div className=" flex justify-between  items-center w-full gap-8">
             <Search />
             <Button
               size="medium"
@@ -24,6 +26,8 @@ export const NavBar = ({ admin }: propsNavbar) => {
               checkout={true}
               numberCart={5}
             />
+            <FiUser className="lg:w-16 lg:h-12 cursor-pointer text-light-100  hover:opacity-50 transition-all" />
+            <IconLogout />
           </div>
         </div>
       </Container>

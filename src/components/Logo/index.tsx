@@ -19,7 +19,7 @@ export const Logo = ({ size, className, admin }: propLogo) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className={classNames(
-            " mr-[10px]",
+            " mr-[10px] hover:animate-spin duration-75 transition-all",
             size === "small"
               ? " w-[1.538rem] h-[1.538rem] lg:w-[1.875rem] lg:h-[1.875rem]"
               : " h-[2.707rem] w-[2.707rem] lg:h-[2.969rem] lg:w-[3.089rem]"

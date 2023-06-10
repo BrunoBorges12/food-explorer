@@ -91,12 +91,13 @@ export const AuthForm = ({ signUp }: propsAuth) => {
             placeholder="No mínimo 6 caracteres"
             required={true}
           />
+
           <Button
-            color="tomato-dark"
+            className="w-full"
+            color="tomato-100"
             size="medium"
             title={signUp ? "Criar conta" : "Entra na conta"}
             loading={loading}
-            widthFull={true}
           />
           <span className="hover:underline text-light-100 font-medium">
             <a href={signUp ? "/login" : "/registrer"}>

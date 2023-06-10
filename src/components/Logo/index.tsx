@@ -7,7 +7,7 @@ type propLogo = {
 };
 export const Logo = ({ size, className, admin }: propLogo) => {
   return (
-    <div className="flex lg:flex-col">
+    <div className="flex lg:flex-col h-full relative">
       <div
         className={classNames(
           className,
@@ -32,7 +32,7 @@ export const Logo = ({ size, className, admin }: propLogo) => {
         </svg>
         <h1
           className={classNames(
-            " font-roboto text-light-100 font-bold",
+            " font-roboto text-light-100 font-bold  whitespace-nowrap",
             size === "small"
               ? " text-[1.323rem]  lg:text-lg"
               : "  text-[2.328rem]  leading-[2.728rem] lg:text-2xl"

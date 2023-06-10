@@ -20,7 +20,7 @@ function Button({
   return (
     <button
       className={classNames(
-        "py-3 px-8  cursor-pointer flex items-center justify-center text-light-100 gap-3 shadow-inner transition-all duration-500 text-center select-none  relative font-poppins  font-medium text-sm rounded-md",
+        "py-3 px-8 hover:opacity-50  cursor-pointer flex items-center justify-center text-light-100 gap-3 shadow-inner transition-all duration-500 text-center select-none  relative font-poppins  font-medium text-sm rounded-md",
         {
           "bg-tomato-100": color === "tomato-100",
           "bg-tomato-200": color === "tomato-200",

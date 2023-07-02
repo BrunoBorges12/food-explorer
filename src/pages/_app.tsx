@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Poppins, Roboto } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -32,7 +33,9 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       </style>
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+      </SessionProvider>
     </>
   );
 }

@@ -1,8 +1,13 @@
 import classNames from "classnames";
 
-export const IconLogout = () => {
+type props = {
+  onClick: () => void;
+};
+
+export const IconLogout = ({ onClick }: props) => {
   return (
     <svg
+      onClick={onClick}
       viewBox="0 0 25 24"
       fill="none"
       className={classNames(

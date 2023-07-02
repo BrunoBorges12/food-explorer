@@ -5,6 +5,7 @@ import Input from "../Input";
 import { useForm, FormProvider } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 type propsAuth = {
   signUp: boolean;
@@ -26,20 +27,20 @@ export const AuthForm = ({ signUp }: propsAuth) => {
     try {
       if (signUp) {
         const response = await axios.post(
-          "http://127.0.0.1:8000/register",
+          "http://127.0.0.1:8000/api/auth/register",
           data
         );
 
-        if (response.status === 200) {
+        if (response.status === 201) {
           router.push("/login");
         }
       } else {
-        console.log("ok");
-        setLoading(true);
-        const response = await axios.post("/api/login", data);
-        if (response.status === 200) {
-          router.push("/");
-        }
+        signIn("credentials", {
+          redirect: true,
+          email: data.email,
+          password: data.password,
+          callbackUrl: "/",
+        });
       }
     } catch (error: any) {
       console.log(error);

@@ -6,6 +6,8 @@ import { IconLogout } from "./components/IconLogout";
 import { Search } from "./components/Search";
 import { FiUser } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { signOut } from "next-auth/react";
+
 import classNames from "classnames";
 type propsNavbar = {
   admin?: boolean;
@@ -35,7 +37,7 @@ export const NavBar = ({ admin }: propsNavbar) => {
           />
           <div
             className={classNames(
-              "flex gap-10 transition-all duration-1000  h-1/2 bg-dark-600 shadow-md border rounded z-40 top-[6.25rem] w-full left-0  justify-center items-center  flex-col  fixed lg:shadow-none lg:rounded-none lg:border-none  lg:left-0 lg:bg-transparent lg:h-auto lg:top-auto  lg:justify-between lg:gap-8 lg:flex-row lg:translate-x-0  lg:w-full lg:relative",
+              "flex gap-10 transition-all duration-1000  h-1/2 bg-dark-600 shadow-md border rounded z-[9999999] top-[6.25rem] w-full left-0  justify-center items-center  flex-col  fixed lg:shadow-none lg:rounded-none lg:border-none  lg:left-0 lg:bg-transparent lg:h-auto lg:top-auto  lg:justify-between lg:gap-8 lg:flex-row lg:translate-x-0  lg:w-full lg:relative",
               isOpenNav ? "translate-x-0" : "-translate-x-full"
             )}
           >
@@ -51,7 +53,12 @@ export const NavBar = ({ admin }: propsNavbar) => {
               numberCart={5}
             />
             <FiUser className="w-8 h-8 cursor-pointer text-light-100  hover:opacity-50 transition-all  lg:block lg:w-16 lg:h-16" />
-            <IconLogout />
+
+            <IconLogout
+              onClick={() => {
+                signOut();
+              }}
+            />
           </div>
         </div>
       </Container>

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { data } from "autoprefixer";
 import axios from "axios";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -10,6 +9,7 @@ export default NextAuth({
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
+      //@ts-ignore
 
       async authorize(credentials) {
         try {
@@ -31,7 +31,6 @@ export default NextAuth({
           //@ts-ignore
           const user = await res;
           //@ts-ignore
-          console.log(user);
 
           if (user.data.access_token && user) {
             // debug

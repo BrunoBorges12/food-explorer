@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       </style>
-      <SessionProvider session={pageProps.session}>
+      <SessionProvider session={pageProps.session} refetchInterval={1 * 60}>
         <Component {...pageProps} />
       </SessionProvider>
     </>

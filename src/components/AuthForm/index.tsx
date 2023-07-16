@@ -26,8 +26,9 @@ export const AuthForm = ({ signUp }: propsAuth) => {
   const onSubmit = async (data: formValues) => {
     try {
       if (signUp) {
+        console.log("ok");
         const response = await axios.post(
-          "http://127.0.0.1:8000/api/auth/register",
+          "http://127.0.0.1:5000/api/register",
           data
         );
 
@@ -35,26 +36,26 @@ export const AuthForm = ({ signUp }: propsAuth) => {
           router.push("/login");
         }
       } else {
-        signIn("credentials", {
-          redirect: true,
+        const result = await signIn("credentials", {
+          redirect: false,
           email: data.email,
           password: data.password,
           callbackUrl: "/",
         });
+        console.log(result);
+        if (result?.status === 200) {
+          router.push("/");
+        }
+        if (result?.status === 401) {
+          setTimeout(() => {
+            setLoading(false);
+            setError("password", { message: "Email ou senha Incorreto" });
+            setError("email", { message: "Email ou senha Incorreto" });
+          }, 500);
+        }
       }
     } catch (error: any) {
       console.log(error);
-      setTimeout(() => {
-        setLoading(false);
-        if (error.response.status === 401) {
-          setError("password", { message: "Email ou senha Incorreto" });
-          setError("email", { message: "Email ou senha Incorreto" });
-        }
-      }, 500);
-
-      if (error.response.status === 409) {
-        setError("email", { message: "Esse email já existe" });
-      }
     }
   };
 

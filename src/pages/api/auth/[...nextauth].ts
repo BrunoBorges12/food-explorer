@@ -15,30 +15,24 @@ export default NextAuth({
         try {
           const res = axios
             .post(
-              "http://127.0.0.1:8000/api/auth/login",
+              "http://127.0.0.1:5000/api/login",
               JSON.stringify({
                 email: credentials?.email,
                 password: credentials?.password,
-              }),
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
+              })
             )
             .then((response) => response)
             .catch((error) => error);
           //@ts-ignore
           const user = await res;
+          console.log(user.data);
           //@ts-ignore
 
-          if (user.data.access_token && user) {
+          if (user.data.data.token && user) {
             // debug
             return {
               user,
             };
-          } else {
-            return null;
           }
         } catch (err) {
           throw new Error("Next Auth - Authorize: Authentication error");

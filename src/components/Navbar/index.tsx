@@ -23,7 +23,7 @@ export const NavBar = ({ admin }: propsNavbar) => {
             onClick={() => setIsOpenNav(!isOpenNav)}
           />
           <div>
-            <Logo size="small" admin={false} />
+            <Logo size="small" admin={admin} />
           </div>
           {/*Botão */}
           <Button
@@ -32,7 +32,7 @@ export const NavBar = ({ admin }: propsNavbar) => {
             loading={false}
             className="h-[56px] max-w-[216px] lg:hidden"
             color="tomato-200"
-            checkout={true}
+            checkout={false}
             numberCart={5}
           />
           <div

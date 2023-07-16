@@ -5,3 +5,7 @@
 body {
   @apply bg-dark-400;
 }
+
+.ant-input-number-input {
+  @apply text-light-100 !important;
+}

@@ -46,7 +46,7 @@ function Button({
         {loading && (
           <>
             Entrando
-            <div className="    w-5 h-5  animate-spin  rounded-[50%] border "></div>
+            <div className="w-5 h-5  animate-spin  rounded-[50%] border "></div>
           </>
         )}
         {checkout && <span>{`(${numberCart})`}</span>}

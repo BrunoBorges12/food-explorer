@@ -8,6 +8,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { InputAntd } from "../InputAntd";
 import axios from "axios";
 import { useState } from "react";
+import SelectAntd from "../Select";
 const { TextArea } = Input;
 
 interface formData {
@@ -21,6 +22,7 @@ export const FormPlate = () => {
   const [isNotFile, setIsNotFile] = useState(true);
 
   const onSubmit = (data: formData) => {
+    console.log(data);
     if (!data.file) {
       return;
     }
@@ -36,18 +38,48 @@ export const FormPlate = () => {
   };
   return (
     <Container>
-      <div className="flex flex-col mt-10 font-poppins text-light-300">
+      <div className="flex flex-col mt-8 font-poppins text-light-300">
         <div className=" flex items-center cursor-pointer">
           <RxCaretLeft className=" w-10 h-10" />
           <span className="  font-bold leading-160% text-lg">Volta</span>
         </div>
-        <h1 className=" text-xl font-medium mt-6 mb-8">Adicionar prato</h1>
+        <h1 className="   mt-6 mb-5 lg:text-xl     lg:font-medium">
+          Adicionar prato
+        </h1>
         <FormProvider {...methods}>
           <form
-            className=" max-w-[1120px] w-full"
+            className=" lg:max-w-[1120px] w-full"
             onSubmit={methods.handleSubmit(onSubmit)}
           >
-            <div className=" flex  items-center  relative flex-wrap gap-8">
+            <div className=" flex  lg:items-center w-full  relative flex-wrap gap-8 flex-col lg:flex-row">
+              <InputAntd
+                label={"Nome"}
+                className="lg:w-[432px] w-full "
+                name="name"
+                placehold={"Ex: Salada"}
+                required={true}
+                htmlFor="name"
+                type="text"
+              />
+              <SelectAntd
+                label="Categoria"
+                htmlFor="category"
+                name="category"
+                className="lg:w-[332px] w-full"
+                options={[
+                  { label: "Reifeição", value: "refeicao" },
+                  { label: "Sobremesa", value: "sobremesa" },
+                  { label: "Bebidas", value: "bebida" },
+                ]}
+              />
+              <InputAntd
+                className="lg:w-[223px] w-full"
+                name="price"
+                required={true}
+                htmlFor="price"
+                label={"Preço"}
+                type="number"
+              />{" "}
               <div className=" flex flex-col gap-3 ">
                 <label
                   className=" font-roboto text-[16px] leading-160% text-light-400"
@@ -56,7 +88,8 @@ export const FormPlate = () => {
                   Image do prato
                 </label>
                 <Upload
-                  className=" flex items-center  "
+                  maxCount={1}
+                  className="  flex flex-col    justify-center text-light-100   lg:items-center "
                   beforeUpload={(file) => {
                     setIsNotFile(false);
                     methods.setValue("file", file);
@@ -64,39 +97,32 @@ export const FormPlate = () => {
                   multiple={false}
                 >
                   <Button
-                    className=" flex items-center  text-light-100    h-[38px] "
+                    className=" flex items-center  text-light-100   w-full  h-[38px] lg:w-auto "
                     icon={<UploadOutlined className="text-[24px]" />}
                   >
                     Seleciona uma Imagem
                   </Button>
                 </Upload>
               </div>
-
-              <InputAntd
-                label={"Nome"}
-                className="w-[432px]"
-                name="name"
-                htmlFor="name"
-                type="text"
-              />
-              <InputAntd
-                className="w-[100px]"
-                name="price"
-                htmlFor="price"
-                label={"Preço"}
-                type="number"
-              />
               <TextArea
                 onChange={(event) => {
                   methods.setValue("description", event.target.value);
                 }}
-                className=" bg-dark-800 text-light-100"
+                placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                className=" bg-dark-800 text-light-100 placeholder:text-light-400"
                 rows={4}
               />
             </div>
-            <Button type="primary" disabled={isNotFile}>
-              Enviar
-            </Button>
+            <div className=" flex w-full  justify-end">
+              <Button
+                className="bg-tomato-400  text-light-100 font-poppins mt-6"
+                size="large"
+                htmlType="submit"
+                disabled={isNotFile}
+              >
+                Salva Alteração
+              </Button>
+            </div>
           </form>
         </FormProvider>
       </div>

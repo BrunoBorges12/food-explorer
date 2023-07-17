@@ -9,6 +9,8 @@ type propsInputAntd = {
   className: string;
   type: string;
   label: string;
+  required: boolean;
+  placehold?: string;
 };
 export const InputAntd = ({
   name,
@@ -16,6 +18,8 @@ export const InputAntd = ({
   className,
   type,
   label,
+  required,
+  placehold,
 }: propsInputAntd) => {
   const {
     control,
@@ -23,7 +27,7 @@ export const InputAntd = ({
   } = useFormContext(); // retrieve all hook methods
   console.log(errors);
   return (
-    <div className=" flex flex-col  gap-3">
+    <div className=" flex flex-col  gap-1">
       <label
         className=" font-roboto text-[16px] leading-160% text-light-400"
         htmlFor={htmlFor}
@@ -33,12 +37,13 @@ export const InputAntd = ({
       <Controller
         control={control}
         name={name}
-        rules={{ required: true }}
+        rules={{ required: required }}
         render={({ field: { onChange } }) => {
           if (type === "text") {
             return (
               <Input
                 status={errors[name] ? "error" : ""}
+                placeholder={placehold ? placehold : ""}
                 className={classNames(
                   "  bg-dark-800 text-white  placeholder:text-light-500 placeholder:font-roboto",
                   className

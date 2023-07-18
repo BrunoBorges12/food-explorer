@@ -38,7 +38,7 @@ export const FormPlate = () => {
   };
   return (
     <Container>
-      <div className="flex flex-col mt-8 font-poppins text-light-300">
+      <div className="flex flex-col  font-poppins  text-light-300 lg:mt-8 ">
         <div className=" flex items-center cursor-pointer">
           <RxCaretLeft className=" w-10 h-10" />
           <span className="  font-bold leading-160% text-lg">Volta</span>
@@ -113,9 +113,9 @@ export const FormPlate = () => {
                 rows={4}
               />
             </div>
-            <div className=" flex w-full  justify-end">
+            <div className=" flex   lg:justify-end">
               <Button
-                className="bg-tomato-400  text-light-100 font-poppins mt-6"
+                className="bg-tomato-400  w-full rounded-[5px]  text-light-100 font-poppins lg:mt-6 lg:w-auto "
                 size="large"
                 htmlType="submit"
                 disabled={isNotFile}

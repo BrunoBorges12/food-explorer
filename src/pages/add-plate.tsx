@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { FormPlate } from "@/components/FormPlate";
 import { NavBar } from "@/components/Navbar";
+
+import { Footer } from "@/components/Footer";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -16,6 +18,7 @@ export default function Home() {
       <>
         <NavBar admin={true} />
         <FormPlate />
+        <Footer />
       </>
     );
   }

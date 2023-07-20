@@ -1,67 +1,43 @@
-import { useState } from "react";
-import Button from "../Button";
+import { Button, Layout } from "antd";
 import { Container } from "../Container";
 import { Logo } from "../Logo";
-import { IconLogout } from "./components/IconLogout";
+
 import { Search } from "./components/Search";
-import { FiUser } from "react-icons/fi";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { signOut } from "next-auth/react";
+import { IconNote } from "./components/IconNote";
+import { IconLogout } from "./components/IconLogout";
+import { IconMenu } from "./components/IconMenu";
+import { SideBar } from "./components/SideBar";
+import { useState } from "react";
 
-import classNames from "classnames";
-type propsNavbar = {
-  admin?: boolean;
-};
-export const NavBar = ({ admin }: propsNavbar) => {
-  const [isOpenNav, setIsOpenNav] = useState(false);
+const { Header } = Layout;
+export const NavBar = () => {
+  const [isOpen, setIsopen] = useState(false);
   return (
-    <header className="w-full top-0 flex  shadow-2xl justify-center items-center h-full bg-dark-600 ">
-      <Container>
-        <div className=" flex  items-center  justify-between  py-6 lg:gap-11   ">
-          <RxHamburgerMenu
-            className=" text-light-100 w-8 h-8 lg:hidden"
-            onClick={() => setIsOpenNav(!isOpenNav)}
-          />
-          <div>
-            <Logo size="small" admin={admin} />
-          </div>
-          {/*Botão */}
+    <Header className=" bg-dark-600  items-center relative h-auto p-0 ">
+      <Container className="items-center py-4  justify-between flex relative lg:justify-start lg:py-6">
+        <IconMenu onClick={() => setIsopen(!isOpen)} />
+        <Logo
+          size="small"
+          className=" absolute  left-[31%] lg:relative  lg:left-auto"
+        />
+        <Search hiddenIsMobile={true} />
+        <a href="/teste">
           <Button
-            size="medium"
-            title="Ver pedidos"
-            loading={false}
-            className="h-[56px] max-w-[216px] lg:hidden"
-            color="tomato-200"
-            checkout={false}
-            numberCart={5}
-          />
-          <div
-            className={classNames(
-              "flex gap-10 transition-all duration-1000  h-1/2 bg-dark-600 shadow-md border rounded z-[9999999] top-[6.25rem] w-full left-0  justify-center items-center  flex-col  fixed lg:shadow-none lg:rounded-none lg:border-none  lg:left-0 lg:bg-transparent lg:h-auto lg:top-auto  lg:justify-between lg:gap-8 lg:flex-row lg:translate-x-0  lg:w-full lg:relative",
-              isOpenNav ? "translate-x-0" : "-translate-x-full"
-            )}
+            size="large"
+            className=" hidden mr-8 text-light-100 bg-tomato-100 gap-3   items-center rounded-md   lg:flex"
+            icon={<IconNote />}
           >
-            <Search className="max-w-xs lg:max-w-full mt-12 lg:mt-0" />
-
-            <Button
-              size="medium"
-              title="Ver pedidos"
-              loading={false}
-              className="h-[56px] max-w-[216px] hidden lg:flex"
-              color="tomato-200"
-              checkout={true}
-              numberCart={5}
-            />
-            <FiUser className="w-8 h-8 cursor-pointer text-light-100  hover:opacity-50 transition-all  lg:block lg:w-16 lg:h-16" />
-
-            <IconLogout
-              onClick={() => {
-                signOut();
-              }}
-            />
-          </div>
-        </div>
+            <span className="">Pedidos</span>
+            <span>(1)</span>
+          </Button>
+        </a>
+        <IconLogout
+          onClick={() => {
+            console.log("coloca algo aqui");
+          }}
+        />
       </Container>
-    </header>
+      <SideBar isOpen={isOpen} />
+    </Header>
   );
 };

@@ -7,13 +7,8 @@ type propLogo = {
 };
 export const Logo = ({ size, className, admin }: propLogo) => {
   return (
-    <div className="flex lg:flex-col h-full relative">
-      <div
-        className={classNames(
-          className,
-          " flex items-center    lg:m-0 lg:gap-2"
-        )}
-      >
+    <div className={classNames("flex lg:flex-col h-full ", className)}>
+      <div className={classNames(" flex items-center    lg:m-0 lg:gap-2")}>
         <svg
           viewBox="0 0 27 31"
           fill="none"

@@ -7,14 +7,6 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500"],
 });
-declare module "iron-session" {
-  interface IronSessionData {
-    user?: {
-      id: number;
-      admin?: boolean;
-    };
-  }
-}
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       </style>
-      <SessionProvider session={pageProps.session} refetchInterval={1 * 60}>
+      <SessionProvider session={pageProps.session} >
         <Component {...pageProps} />
       </SessionProvider>
     </>

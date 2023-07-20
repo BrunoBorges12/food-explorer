@@ -115,7 +115,7 @@ export const FormPlate = () => {
             </div>
             <div className=" flex   lg:justify-end">
               <Button
-                className="bg-tomato-400  w-full rounded-[5px]  text-light-100 font-poppins lg:mt-6 lg:w-auto "
+                className="bg-tomato-400  mt-5  w-full rounded-[5px]  text-light-100 font-poppins lg:mt-6 lg:w-auto "
                 size="large"
                 htmlType="submit"
                 disabled={isNotFile}

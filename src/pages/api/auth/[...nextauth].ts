@@ -16,16 +16,12 @@ export default NextAuth({
           const res = axios
             .post(
               "http://127.0.0.1:5000/api/login",
-              JSON.stringify({
-                email: credentials?.email,
-                password: credentials?.password,
-              })
+              credentials
             )
             .then((response) => response)
             .catch((error) => error);
           //@ts-ignore
           const user = await res;
-          console.log(user.data);
           //@ts-ignore
 
           if (user.data.data.token && user) {

@@ -52,6 +52,7 @@ export const InputAntd = ({
                 size="large"
                 id={htmlFor}
                 name={name}
+                defaultValue={""}
               />
             );
           } else {

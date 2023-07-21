@@ -12,11 +12,19 @@ import { Card } from "./components/Card";
 
 type propsCarrousel = {
   title: string;
+  type: string;
+  products: {
+    category: string;
+    description?: string;
+    img: string;
+    name: string;
+    price: number;
+  }[];
 };
-export const CarrouselSection = ({ title }: propsCarrousel) => {
+export const CarrouselSection = ({ title, type, products }: propsCarrousel) => {
   return (
     <div>
-      <h1 className="mb-8 text-light-300 text-xl font-poppins">{title}</h1>
+      <h1 className="my-8 text-light-300 text-xl font-poppins">{title}</h1>
       <Swiper
         grabCursor={false}
         loop={true}
@@ -33,39 +41,20 @@ export const CarrouselSection = ({ title }: propsCarrousel) => {
           },
         }}
       >
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
+        {products.map((product, key) => {
+          if (type === product.category) {
+            return (
+              <SwiperSlide key={key}>
+                <Card
+                  name={product.name}
+                  price={product.price}
+                  description={product.description}
+                  img={product.img}
+                />
+              </SwiperSlide>
+            );
+          }
+        })}
       </Swiper>
     </div>
   );

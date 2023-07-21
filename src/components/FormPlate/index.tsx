@@ -2,7 +2,7 @@
 import { Container } from "../Container";
 import { RxCaretLeft } from "react-icons/rx";
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, Upload, Input } from "antd";
+import { Button, Upload, Input, notification } from "antd";
 
 import { useForm, FormProvider } from "react-hook-form";
 import { InputAntd } from "../InputAntd";
@@ -15,14 +15,16 @@ interface formData {
   price: string;
   name: string;
   file: Blob;
+  category: string;
   description: string;
 }
 export const FormPlate = () => {
   const methods = useForm<formData>();
   const [isNotFile, setIsNotFile] = useState(true);
-
-  const onSubmit = (data: formData) => {
-    console.log(data);
+  const [loading, setLoading] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
+  const onSubmit = async (data: formData) => {
+    setLoading(true);
     if (!data.file) {
       return;
     }
@@ -30,14 +32,39 @@ export const FormPlate = () => {
     const bodyFormData = new FormData();
     bodyFormData.append("price", data.price);
     bodyFormData.append("name", data.name);
+    bodyFormData.append("category", data.category);
     bodyFormData.append("description", data.description);
     bodyFormData.append("file", data.file);
-    axios.post("http://127.0.0.1:5000/api/product", bodyFormData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+
+    try {
+      const result = await axios.post(
+        "http://127.0.0.1:5000/api/product",
+        bodyFormData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      if (result.status === 200) {
+        api.open({
+          message: "Dados Salvo com sucesso",
+        });
+      }
+    } catch {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      api.open({
+        message: `Ocorreu um  erro`,
+      });
+    }
   };
+
   return (
     <Container>
+      {contextHolder}
       <div className="flex flex-col  font-poppins  text-light-300 lg:mt-8 ">
         <div className=" flex items-center cursor-pointer">
           <RxCaretLeft className=" w-10 h-10" />
@@ -117,6 +144,7 @@ export const FormPlate = () => {
               <Button
                 className="bg-tomato-400  mt-5  w-full rounded-[5px]  text-light-100 font-poppins lg:mt-6 lg:w-auto "
                 size="large"
+                loading={loading}
                 htmlType="submit"
                 disabled={isNotFile}
               >

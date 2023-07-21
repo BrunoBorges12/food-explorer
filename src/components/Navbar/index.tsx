@@ -13,7 +13,7 @@ const { Header } = Layout;
 export const NavBar = () => {
   const [isOpen, setIsopen] = useState(false);
   return (
-    <Header className=" bg-dark-600  items-center relative h-auto p-0 ">
+    <Header className=" bg-dark-600  items-center relative h-auto p-0  ">
       <Container className="items-center py-4  justify-between flex relative lg:justify-start lg:py-6">
         <IconMenu onClick={() => setIsopen(!isOpen)} />
         <Logo

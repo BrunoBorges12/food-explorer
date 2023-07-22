@@ -8,12 +8,14 @@ import { IconLogout } from "./components/IconLogout";
 import { IconMenu } from "./components/IconMenu";
 import { SideBar } from "./components/SideBar";
 import { useState } from "react";
+import { useCart } from "@/context/Cart";
 
 const { Header } = Layout;
 export const NavBar = () => {
+  const { cart } = useCart();
   const [isOpen, setIsopen] = useState(false);
   return (
-    <Header className=" bg-dark-600  items-center relative h-auto p-0  ">
+    <Header className=" bg-dark-600  items-center  z-[9999999] h-auto p-0   w-full fixed">
       <Container className="items-center py-4  justify-between flex relative lg:justify-start lg:py-6">
         <IconMenu onClick={() => setIsopen(!isOpen)} />
         <Logo
@@ -28,7 +30,7 @@ export const NavBar = () => {
             icon={<IconNote />}
           >
             <span className="">Pedidos</span>
-            <span>(1)</span>
+            <span>({cart.data.length})</span>
           </Button>
         </a>
         <IconLogout

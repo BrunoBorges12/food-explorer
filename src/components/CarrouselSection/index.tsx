@@ -19,6 +19,7 @@ type propsCarrousel = {
     img: string;
     name: string;
     price: number;
+    id: string;
   }[];
 };
 export const CarrouselSection = ({ title, type, products }: propsCarrousel) => {
@@ -46,10 +47,12 @@ export const CarrouselSection = ({ title, type, products }: propsCarrousel) => {
             return (
               <SwiperSlide key={key}>
                 <Card
+                  id={product.id}
                   name={product.name}
                   price={product.price}
                   description={product.description}
                   img={product.img}
+                  quantity={1}
                 />
               </SwiperSlide>
             );

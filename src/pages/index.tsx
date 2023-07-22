@@ -4,10 +4,8 @@ import { CarrouselSection } from "@/components/CarrouselSection";
 import { Container } from "@/components/Container";
 import { Footer } from "@/components/Footer";
 import { NavBar } from "@/components/Navbar";
-import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { list } from "postcss";
 import { useEffect, useState } from "react";
 
 export default function Home() {

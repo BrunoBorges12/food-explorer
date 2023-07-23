@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { CardPayment } from "@/components/CardPayment";
 import { Container } from "@/components/Container";
 import { Footer } from "@/components/Footer";
 import { NavBar } from "@/components/Navbar";
@@ -12,10 +13,10 @@ export default function Pedidos() {
   return (
     <>
       <NavBar />
-      <Container className="py-36 font-poppins ">
-        <h1 className="  text-xl  text-light-300 mb-8">Meu Pedido</h1>
-        <div className="flex text-light-300">
+      <Container className="py-32 font-poppins ">
+        <div className="flex lg:flex-row flex-col gap-32 text-light-300">
           <div className="   w-[444px]">
+            <h1 className="  text-xl  text-light-300 mb-8">Meu Pedido</h1>
             <div className="flex flex-col  h-[300px] w-full  overflow-scroll  text-light-100">
               {cart.data.map((cartObject, idx) => {
                 return (
@@ -54,7 +55,7 @@ export default function Pedidos() {
               Total:R$ {total.toString().replace(/([0-9]{2})$/g, ",$1")}
             </h1>
           </div>
-          <div></div>
+          <CardPayment />
         </div>
       </Container>
       <Footer />

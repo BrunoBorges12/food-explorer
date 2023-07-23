@@ -16,7 +16,7 @@ export default function Home() {
   else {
     return (
       <>
-        <NavBar admin={true} />
+        <NavBar />
         <FormPlate />
         <Footer />
       </>

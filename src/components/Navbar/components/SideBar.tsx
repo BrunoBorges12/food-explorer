@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { IconLogout } from "./IconLogout";
 import { Search } from "./Search";
 type propsOpen = {
   isOpen: boolean;

@@ -56,7 +56,10 @@ const Context = createContext<ContextProps>({
   removeFromCart: () => {},
 });
 
-const CartProvider: React.FunctionComponent = ({ children }) => {
+type propsCartProvider = {
+  children: React.ReactNode;
+};
+const CartProvider = ({ children }: propsCartProvider) => {
   const [cart, dispatch] = useReducer(cartReducer, initialState);
 
   useEffect(() => {

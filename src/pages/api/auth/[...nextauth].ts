@@ -14,10 +14,7 @@ export default NextAuth({
       async authorize(credentials) {
         try {
           const res = axios
-            .post(
-              "http://127.0.0.1:5000/api/login",
-              credentials
-            )
+            .post("http://127.0.0.1:5000/api/login", credentials)
             .then((response) => response)
             .catch((error) => error);
           //@ts-ignore
@@ -48,7 +45,7 @@ export default NextAuth({
       }
       return token;
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       // @ts-ignore
 
       session.access_token = token.access_token;

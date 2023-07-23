@@ -1,4 +1,4 @@
-import { Button, Layout } from "antd";
+import { Badge, Button, Layout } from "antd";
 import { Container } from "../Container";
 import { Logo } from "../Logo";
 
@@ -12,6 +12,7 @@ import { useCart } from "@/context/Cart";
 import Link from "next/link";
 
 const { Header } = Layout;
+
 export const NavBar = () => {
   const { cart } = useCart();
   const [isOpen, setIsopen] = useState(false);
@@ -39,6 +40,11 @@ export const NavBar = () => {
             console.log("coloca algo aqui");
           }}
         />
+        <Badge count={cart.data.length}>
+          <Link className="p-0 w-auto relative" href={"/pedidos"}>
+            <IconNote />
+          </Link>
+        </Badge>
       </Container>
       <SideBar isOpen={isOpen} />
     </Header>

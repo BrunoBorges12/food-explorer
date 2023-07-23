@@ -1,7 +1,10 @@
 import classNames from "classnames";
 import { BsSearch } from "react-icons/bs";
 
-export const Search = ({ hiddenIsMobile }) => {
+type propsSearch = {
+  hiddenIsMobile: boolean;
+};
+export const Search = ({ hiddenIsMobile }: propsSearch) => {
   return (
     <div
       className={classNames(

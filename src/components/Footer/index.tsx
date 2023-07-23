@@ -5,7 +5,7 @@ const { Footer: FooterAntd } = Layout;
 
 export const Footer = () => {
   return (
-    <FooterAntd className=" bg-dark-600 mt-12 h-[77px]">
+    <FooterAntd className=" w-full bottom-0 bg-dark-600 mt-12 h-[77px]">
       <Container>
         <div className=" flex justify-between items-center flex-col lg:flex-row">
           <Logo size="small" className=" opacity-50" />

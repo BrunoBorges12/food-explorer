@@ -1,4 +1,7 @@
-export const IconMenu = ({ onClick }) => {
+type propsIconMenu = {
+  onClick: () => void;
+};
+export const IconMenu = ({ onClick }: propsIconMenu) => {
   return (
     <svg
       className="lg:hidden"

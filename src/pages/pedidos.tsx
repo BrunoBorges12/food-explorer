@@ -15,7 +15,7 @@ export default function Pedidos() {
       <NavBar />
       <Container className="py-32 font-poppins ">
         <div className="flex lg:flex-row flex-col gap-32 text-light-300">
-          <div className="   w-[444px]">
+          <div className="   lg:w-[444px]">
             <h1 className="  text-xl  text-light-300 mb-8">Meu Pedido</h1>
             <div className="flex flex-col  h-[300px] w-full  overflow-scroll  text-light-100">
               {cart.data.map((cartObject, idx) => {

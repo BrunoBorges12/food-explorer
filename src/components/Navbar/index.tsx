@@ -40,7 +40,7 @@ export const NavBar = () => {
             console.log("coloca algo aqui");
           }}
         />
-        <Badge count={cart.data.length}>
+        <Badge className="lg:hidden" count={cart.data.length}>
           <Link className="p-0 w-auto relative" href={"/pedidos"}>
             <IconNote />
           </Link>

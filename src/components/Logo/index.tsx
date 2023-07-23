@@ -9,7 +9,7 @@ type propLogo = {
 export const Logo = ({ size, className, admin }: propLogo) => {
   return (
     <Link className={classNames(className)} href="/">
-      <div className={classNames("flex lg:flex-col h-full ")}>
+      <div className={classNames("")}>
         <div className={classNames(" flex items-center    lg:m-0 lg:gap-2")}>
           <svg
             viewBox="0 0 27 31"

@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { createContext, useReducer, useContext } from "react";
+import React, { createContext, useReducer, useContext, useEffect } from "react";
 
 interface Product {
   id: string;
   name: string;
   price: number;
+  img: string;
+  quantity: number;
 }
 
 interface State {
@@ -22,14 +24,15 @@ const initialState: State = {
 
 const cartReducer = (state: State, action: Action): State => {
   const { type, payload } = action;
-
   switch (type) {
     case "ADD":
+      localStorage.setItem("products", JSON.stringify(payload.items));
       return {
-        data: payload.items,
+        data: JSON.parse(localStorage.getItem("products") || ""),
       };
 
     case "REMOVE":
+      localStorage.setItem("products", JSON.stringify(payload.items));
       return {
         data: payload.items,
       };
@@ -47,7 +50,7 @@ interface ContextProps {
 }
 
 const Context = createContext<ContextProps>({
-  state: initialState,
+  cart: initialState,
   dispatch: () => {},
   addToCart: () => {},
   removeFromCart: () => {},
@@ -55,11 +58,23 @@ const Context = createContext<ContextProps>({
 
 const CartProvider: React.FunctionComponent = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, initialState);
+
+  useEffect(() => {
+    if (localStorage.getItem("products") !== null) {
+      dispatch({
+        type: "ADD",
+        payload: {
+          items: JSON.parse(
+            localStorage.getItem("products") || JSON.stringify(initialState)
+          ),
+        },
+      });
+    }
+  }, []);
   const addToCart = (product: Product) => {
     const isAddProduct = cart.data.find(
       (cartObject) => cartObject.id === product.id
     );
-    console.log(isAddProduct);
     if (!isAddProduct) {
       const updatedCart = [...cart.data, product];
       dispatch({

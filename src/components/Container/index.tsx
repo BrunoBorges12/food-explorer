@@ -8,7 +8,7 @@ export const Container = ({ children, className }: propsContainer) => {
   return (
     <div
       className={classNames(
-        " w-full px-5 relative lg:px-[7.688rem]  ",
+        " w-full px-5   relative lg:px-[7.688rem]  ",
         className
       )}
     >

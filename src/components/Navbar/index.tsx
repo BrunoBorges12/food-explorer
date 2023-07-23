@@ -9,6 +9,7 @@ import { IconMenu } from "./components/IconMenu";
 import { SideBar } from "./components/SideBar";
 import { useState } from "react";
 import { useCart } from "@/context/Cart";
+import Link from "next/link";
 
 const { Header } = Layout;
 export const NavBar = () => {
@@ -23,7 +24,7 @@ export const NavBar = () => {
           className=" absolute  left-[31%] lg:relative  lg:left-auto"
         />
         <Search hiddenIsMobile={true} />
-        <a href="/teste">
+        <Link href="/pedidos">
           <Button
             size="large"
             className=" hidden mr-8 text-light-100 bg-tomato-100 gap-3   items-center rounded-md   lg:flex"
@@ -32,7 +33,7 @@ export const NavBar = () => {
             <span className="">Pedidos</span>
             <span>({cart.data.length})</span>
           </Button>
-        </a>
+        </Link>
         <IconLogout
           onClick={() => {
             console.log("coloca algo aqui");

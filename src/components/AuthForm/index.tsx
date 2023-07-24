@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRouter } from "next/router";
-import Button from "../Button";
 import Input from "../Input";
 import { useForm, FormProvider } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-
+import { Button } from "antd";
 type propsAuth = {
   signUp: boolean;
 };
@@ -24,6 +23,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data: formValues) => {
+    setLoading(true);
     try {
       if (signUp) {
         console.log("ok");
@@ -95,12 +95,15 @@ export const AuthForm = ({ signUp }: propsAuth) => {
           />
 
           <Button
-            className="w-full"
+            className="hover:opacity-50 w-full   bg-tomato-100 cursor-pointer flex items-center justify-center text-light-100 gap-3 shadow-inner transition-all duration-500 text-center select-none  relative font-poppins   font-medium text-sm rounded-md"
             color="tomato-100"
-            size="medium"
+            size="large"
+            htmlType="submit"
             title={signUp ? "Criar conta" : "Entra na conta"}
             loading={loading}
-          />
+          >
+            {signUp ? "Criar uma conta" : "Entra na conta"}
+          </Button>
           <span className="hover:underline text-light-100 font-medium">
             <a href={signUp ? "/login" : "/registrer"}>
               {signUp ? "Já tenho uma conta" : "Criar uma conta"}

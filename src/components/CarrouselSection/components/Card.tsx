@@ -2,6 +2,7 @@
 
 import { useCart } from "@/context/Cart";
 import { Button } from "antd";
+import Link from "next/link";
 import { useState } from "react";
 import { AiOutlinePlus, AiOutlineMinus, AiOutlineHeart } from "react-icons/ai";
 type PropsCard = {
@@ -26,9 +27,11 @@ export const Card = (props: PropsCard) => {
             src={`http://127.0.0.1:5000/uploaded_images/${props.img}`}
             alt={product.name}
           />
-          <span className=" font-poppins my-4  text-light-300 text-lg  mt-5 font-bold">
-            {product.name}
-          </span>
+          <Link href={`/product/${product.id}`}>
+            <span className=" font-poppins my-4  text-light-300 text-lg  mt-5 font-bold">
+              {product.name}
+            </span>
+          </Link>
           <span className=" text-light-400   max-w-[14rem]  text-sm">
             {product.description}
           </span>

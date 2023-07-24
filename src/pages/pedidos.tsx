@@ -10,6 +10,7 @@ function getTotal(total: number, item: { price: number; quantity: number }) {
 export default function Pedidos() {
   const { cart, removeFromCart } = useCart();
   const total = cart.data.reduce(getTotal, 0);
+  console.log(cart);
   return (
     <>
       <NavBar />

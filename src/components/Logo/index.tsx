@@ -35,7 +35,7 @@ export const Logo = ({ size, className, admin }: propLogo) => {
                 : "  text-[2.328rem]  leading-[2.728rem] lg:text-2xl"
             )}
           >
-            food explorer
+            Food Explorer
           </h1>
         </div>
         {admin && (

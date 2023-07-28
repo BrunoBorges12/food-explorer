@@ -29,7 +29,7 @@ export default function Home() {
     return (
       <>
         <NavBar />
-        <Container className="overflow-hidden z-50 w-full lg:pt-40  max-w-[1800px] ">
+        <Container className="overflow-hidden z-50  w-full pt-14   max-w-[1800px] lg:pt-40 ">
           <CarrouselSection
             title="Refeições"
             type="refeicao"

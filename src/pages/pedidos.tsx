@@ -31,7 +31,7 @@ export default function Pedidos() {
                       alt={cartObject.name}
                     />
                     <div className="">
-                      <span className=" text-base1  mb-11  text-light-300 ">
+                      <span className="   text-sm mb-11  text-light-300 lg:text-base1  ">
                         {cartObject.quantity} X {cartObject.name}
                       </span>
                       <span className=" font-roboto text-xs ml-3  relative  text-light-400">
@@ -52,7 +52,7 @@ export default function Pedidos() {
                 );
               })}
             </div>
-            <h1 className="text-base1 font-medium font-poppins mt-8">
+            <h1 className="text-base1 font-medium font-poppins lg:mt-8">
               Total:R$ {total.toString().replace(/([0-9]{2})$/g, ",$1")}
             </h1>
           </div>

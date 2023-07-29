@@ -40,6 +40,7 @@ export const AuthForm = ({ signUp }: propsAuth) => {
           redirect: false,
           email: data.email,
           password: data.password,
+
           callbackUrl: "/",
         });
         console.log(result);

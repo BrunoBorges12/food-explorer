@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import { FormPlate } from "@/components/FormPlate";
@@ -10,10 +11,11 @@ import { useRouter } from "next/router";
 export default function Home() {
   const router = useRouter();
 
-  const { status } = useSession();
+  const { status, data } = useSession();
   if (status === "loading") return null;
   if (status === "unauthenticated") router.push("login");
-  else {
+  // @ts-ignore
+  else if (data.role === "admin") {
     return (
       <>
         <NavBar />
@@ -21,5 +23,8 @@ export default function Home() {
         <Footer />
       </>
     );
+  } else {
+    router.push("/");
+    return <div>Não tem acesso babaca</div>;
   }
 }

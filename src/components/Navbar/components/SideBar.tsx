@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { Search } from "./Search";
+import { signOut } from "next-auth/react";
 type propsOpen = {
   isOpen: boolean;
 };
@@ -13,7 +14,12 @@ export const SideBar = ({ isOpen }: propsOpen) => {
     >
       <div className=" flex flex-col justify-center gap-9 px-10 py-10">
         <Search hiddenIsMobile={false} />
-        <span className="text-light-100  text-lg font-poppins">Sair</span>
+        <span
+          onClick={() => signOut({ callbackUrl: "/login" })}
+          className="text-light-100  text-lg font-poppins"
+        >
+          Sair
+        </span>
       </div>
     </div>
   );

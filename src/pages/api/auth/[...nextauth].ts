@@ -1,55 +1,66 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import axios from "axios";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+// @ts-ignore
+
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      //@ts-ignore
+      name: "Credentials",
 
+      //@ts-ignore
       async authorize(credentials) {
         try {
-          const res = axios
-            .post("http://127.0.0.1:5000/api/login", credentials)
-            .then((response) => response)
-            .catch((error) => error);
-          //@ts-ignore
-          const user = await res;
-          //@ts-ignore
+          const res = await fetch("http://127.0.0.1:5000/api/login", {
+            method: "POST",
+            body: JSON.stringify(credentials),
+            headers: { "Content-Type": "application/json" },
+          });
 
-          if (user.data.data.token && user) {
-            // debug
-            return {
-              user,
-            };
+          const user = await res.json();
+          if (res.ok && user) {
+            return user;
           }
+          // Return null if user data could not be retrieved
+          return null;
         } catch (err) {
-          throw new Error("Next Auth - Authorize: Authentication error");
+          // @ts-ignore
+
+          throw new Error(err, "Next Auth - Authorize: Authentication error");
         }
       },
+      // @ts-ignore
+      credentials: undefined,
     }),
   ],
+  jwt: {
+    secret: process.env.JWT_SECRET,
+  },
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge: 10 * 60, // 10 minutes
   },
   callbacks: {
     async jwt({ token, user }) {
-      // @ts-ignore
-      if (user?.token) {
+      if (user) {
         // @ts-ignore
-        token = { access_token: user.access_token };
+
+        token.accessToken = user.data.token;
       }
-      return token;
+      return { ...token, ...user };
     },
     async session({ session, token }) {
+      console.log(token);
+      session.user = token;
       // @ts-ignore
 
-      session.access_token = token.access_token;
-      return session;
+      session.acessToken = token.data.token;
+      return {
+        ...session,
+        // @ts-ignore
+        role: token.data.role,
+      };
     },
   },
 });

@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center"><a href="https://food-explorer-z6fp.vercel.app">Food Explorer - Rocketseat Explorer :rocket: </a></h1>
+  <h1 align="center"><a href="https://food-explorer-z6fp.vercel.app">Food Explorer</a></h1>
 </p>
 
 <p align="center">

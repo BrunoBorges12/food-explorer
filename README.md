@@ -24,9 +24,12 @@ Este repositório contém os dados do Frontend da minha aplicação em React.js 
 
 A página inicial em formato desktop é vista na imagem abaixo:
 
-![foodexplorer vercel app_](https://user-images.githubusercontent.com/106932234/204163348-5f06ae24-3ede-4bae-b68a-770493d1a286.png)
 
-![foodexplorer vercel app_ (1)](https://user-images.githubusercontent.com/106932234/204163350-1d4c8a96-f68a-4eb0-aa8e-5343e2681749.png)
+
+
+![foodexplorer vercel app_](https://github.com/BrunoBorges12/food-explorer/assets/81433706/25b2a947-e775-4b7e-a164-84576cd8e2b9)
+
+![foodexplorer vercel app_ (1)]([https://user-images.githubusercontent.com/106932234/204163350-1d4c8a96-f68a-4eb0-aa8e-5343e2681749.png](https://github.com/BrunoBorges12/food-explorer/assets/81433706/62f499ea-02f4-4472-b2a8-c0ac98539889))
 
 ---
 

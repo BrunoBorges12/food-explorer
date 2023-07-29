@@ -5,7 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 type propsAuth = {
   signUp: boolean;
 };
@@ -21,12 +21,12 @@ export const AuthForm = ({ signUp }: propsAuth) => {
   const methods = useForm<formValues>();
   const { handleSubmit, setError } = methods;
   const [loading, setLoading] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
 
   const onSubmit = async (data: formValues) => {
     setLoading(true);
     try {
       if (signUp) {
-        console.log("ok");
         const response = await axios.post(
           "http://127.0.0.1:5000/api/register",
           data
@@ -56,12 +56,17 @@ export const AuthForm = ({ signUp }: propsAuth) => {
         }
       }
     } catch (error: any) {
+      api.open({
+        message: `Ocorreu um  erro`,
+      });
       console.log(error);
     }
   };
 
   return (
     <FormProvider {...methods}>
+      {contextHolder}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="lg:shadow-2xl lg:shadow-dark-800 rounded relative max-w-[29.8rem] w-full  flex flex-col font-poppins justify-center items-center p-10 lg:p-16 lg:bg-dark-700 gap-8">
           <h2 className="text-xl text-light-100 hidden lg:block">

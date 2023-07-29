@@ -26,10 +26,9 @@ A página inicial em formato desktop é vista na imagem abaixo:
 
 
 
-
 ![foodexplorer vercel app_](https://github.com/BrunoBorges12/food-explorer/assets/81433706/25b2a947-e775-4b7e-a164-84576cd8e2b9)
 
-![foodexplorer vercel app_ (1)]([https://user-images.githubusercontent.com/106932234/204163350-1d4c8a96-f68a-4eb0-aa8e-5343e2681749.png](https://github.com/BrunoBorges12/food-explorer/assets/81433706/62f499ea-02f4-4472-b2a8-c0ac98539889))
+![foodexplorer vercel app_ (1)](https://github.com/BrunoBorges12/food-explorer/assets/81433706/581df0d7-4371-406c-838d-07d68bd8caaf)
 
 ---
 

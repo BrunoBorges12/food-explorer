@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center"><a href="https://food3xplorer.netlify.app/">Food Explorer - Rocketseat Explorer :rocket: </a></h1>
+  <h1 align="center"><a href="https://food-explorer-z6fp.vercel.app">Food Explorer - Rocketseat Explorer :rocket: </a></h1>
 </p>
 
 <p align="center">
@@ -25,8 +25,9 @@ Este repositório contém os dados do Frontend da minha aplicação em React.js 
 A página inicial em formato desktop é vista na imagem abaixo:
 
 
+![Captura de tela de 2023-07-29 01-17-51](https://github.com/BrunoBorges12/food-explorer/assets/81433706/b607d131-4f94-4d21-8fd7-53aacf1d295b)
 
-![foodexplorer vercel app_](https://github.com/BrunoBorges12/food-explorer/assets/81433706/25b2a947-e775-4b7e-a164-84576cd8e2b9)
+
 
 ![foodexplorer vercel app_ (1)](https://github.com/BrunoBorges12/food-explorer/assets/81433706/581df0d7-4371-406c-838d-07d68bd8caaf)
 

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("./swiper.css");
+body {
+  @apply bg-dark-400;
+}
+
+.ant-input-number-input {
+  @apply text-light-100 !important;
+}
+
+.anticon-delete,
+.ant-upload-list-item-action {
+  @apply text-tomato-400  opacity-100 !important;
+}
+.anticon-paper-clip {
+  @apply text-light-500 !important;
+}

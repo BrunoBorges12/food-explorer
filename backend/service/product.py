@@ -6,6 +6,7 @@ import os
 from flask import jsonify
 from common import generate_response
 from http_code import HTTP_400_BAD_REQUEST,HTTP_200_OK
+import pathlib 
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
@@ -18,16 +19,17 @@ def create_product(request):
     if 'file' not in request.files:
         return  generate_response(message='Nenhum arquivo selecionado',status=HTTP_400_BAD_REQUEST)
     file = request.files['file']
-    isSaveFile = False
-    print(request.files['file'])
-  
+    isSaveFile = False  
     if file.filename== '':
+        
        return  generate_response(message='Nenhum arquivo selecionado',status=HTTP_400_BAD_REQUEST)
-    
+    print('chegou aqui',file.filename)
     products = Products(name=form['name'],price=form['price'],description=form['description'],img=file.filename,category=form['category'])
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        file.save(os.path.join('/home/bruno/projetos/food-flask-api-master/upload', filename))
+        p = pathlib.PurePosixPath(__file__)
+
+        file.save(os.path.join(f"{p.parent.parent}/upload", filename))
         isSaveFile=True
     else: 
         isSaveFile=False    

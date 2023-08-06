@@ -19,11 +19,8 @@ from flask_jwt_extended.exceptions import JWTExtendedException
 def token_required(fn):
         @wraps(fn)
         def decorator(*args, **kwargs):
-            try:               
                 verify_jwt_in_request()
                 return fn(*args, **kwargs)
-            except :
-                 print(verify_jwt_in_request())
-                 return 'nao deu certto',500
+               
         return decorator
 

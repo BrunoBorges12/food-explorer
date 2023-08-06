@@ -19,7 +19,7 @@ def login_user(request,input_data):
             return generate_response(message='Usuario não existe',status=HTTP_401_UNAUTHORIZED)
         user = SchemaUser.model_validate(get_user)
         if user.verify_password(input_data.get('password')):
-             token = create_access_token(identity=str(get_user["_id"]),additional_claims={"is_administrator": user.role == 'admin'},expires_delta=timedelta(minutes=1))
+             token = create_access_token(identity=str(get_user["_id"]),additional_claims={"is_administrator": user.role == 'admin'},expires_delta=timedelta(minutes=30))
              input_data["token"] = token
              input_data['role'] = user.role
              return generate_response(

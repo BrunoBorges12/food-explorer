@@ -49,7 +49,7 @@ export const Card = (props: PropsCard) => {
           {" "}
           <img
             className=" h-48 w-48 rounded-[50%] object-cover"
-            src={`http://127.0.0.1:5000/uploaded_images/${props.img}`}
+            src={`http://127.0.0.1:5000/upload/${props.img}`}
             alt={product.name}
           />
           <Link href={`/product/${product.id}`} className=" my-4">

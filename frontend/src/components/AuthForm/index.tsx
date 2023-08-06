@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 import { Button, notification } from "antd";
 type propsAuth = {
   signUp: boolean;
-};
+};   
 
 interface formValues {
   name: string;

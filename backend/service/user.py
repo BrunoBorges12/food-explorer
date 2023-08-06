@@ -13,7 +13,7 @@ def login_user(request,input_data):
     try:
         user =SchemaUser.model_validate(input_data)
         get_user = mongo.db.user.find_one({"email":user.email})
-        print
+        
         if get_user is None:    
 
             return generate_response(message='Usuario não existe',status=HTTP_401_UNAUTHORIZED)

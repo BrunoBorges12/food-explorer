@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+        // @ts-ignore
+
+import type { NextAuthOptions } from "next-auth"
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-// @ts-ignore
+  import jwt from "jsonwebtoken"
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -11,7 +14,7 @@ export default NextAuth({
       //@ts-ignore
       async authorize(credentials) {
         try {
-          const res = await fetch("http://127.0.0.1:5000/api/login", {
+          const res = await fetch(`${process.env.BASE_URL_LOCAL}/login`  , {
             method: "POST",
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },
@@ -35,6 +38,16 @@ export default NextAuth({
   ],
   jwt: {
     secret: process.env.JWT_SECRET,
+            // @ts-ignore
+
+    async encode({ secret, token }) {
+      return jwt.sign(token, secret)
+    },
+            // @ts-ignore
+
+    async decode({ secret, token }) {
+      return jwt.verify(token, secret)
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
@@ -42,7 +55,10 @@ export default NextAuth({
     maxAge: 10 * 60, // 10 minutes
   },
   callbacks: {
+            // @ts-ignore
+
     async jwt({ token, user }) {
+      
       if (user) {
         // @ts-ignore
 
@@ -50,17 +66,22 @@ export default NextAuth({
       }
       return { ...token, ...user };
     },
+            // @ts-ignore
+
     async session({ session, token }) {
-      console.log(token);
       session.user = token;
       // @ts-ignore
 
       session.acessToken = token.data.token;
       return {
+        ...token, 
         ...session,
         // @ts-ignore
         role: token.data.role,
       };
     },
   },
-});
+  
+};
+
+export default NextAuth(authOptions)

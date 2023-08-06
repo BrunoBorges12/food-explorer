@@ -7,8 +7,7 @@ from database import mongo
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError
 from config import MONGO_URI,SECRET
-
-UPLOAD_FOLDER = '/home/bruno/projetos/food-flask-api-master/upload'
+UPLOAD_FOLDER = '/home/bruno/projetos/food-explorer/backend/upload'
 
 app = Flask(__name__,static_folder=UPLOAD_FOLDER)
 
@@ -22,7 +21,6 @@ app.config['JWT_HEADER_NAME'] = 'Authorization'  # Define o nome do cabeçalho o
 app.config['JWT_HEADER_TYPE'] = 'Bearer'  # Define o tipo de cabeçalho onde o token deve ser incluído
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-
 jwt = JWTManager(app)
 mongo.init_app(app)
 
@@ -40,6 +38,15 @@ def unauthorized_loader(err):
 def uploaded_images(Resource):
    def get(self, filename):
         return send_from_directory(UPLOAD_FOLDER, filename)
+
+
+@app.after_request
+
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  return response
 
 class UploadedImages(Resource):
     def get(self, filename):

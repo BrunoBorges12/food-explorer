@@ -4,21 +4,13 @@ import { Container } from "@/components/Container";
 import { Footer } from "@/components/Footer";
 import { NavBar } from "@/components/Navbar";
 import { useCart } from "@/context/Cart";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 function getTotal(total: number, item: { price: number; quantity: number }) {
   return total + item.price * item.quantity;
 }
 export default function Pedidos() {
   const { cart, removeFromCart } = useCart();
   const total = cart.data.reduce(getTotal, 0);
-  const router = useRouter();
 
-  console.log(cart);
-  const { status } = useSession();
-  if (status === "loading") return null;
-  if (status === "unauthenticated") router.push("login");
-  else {
     return (
       <>
         <NavBar />
@@ -71,4 +63,4 @@ export default function Pedidos() {
       </>
     );
   }
-}
+

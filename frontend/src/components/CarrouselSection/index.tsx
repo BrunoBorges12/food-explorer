@@ -42,7 +42,7 @@ export const CarrouselSection = ({ title, type, products }: propsCarrousel) => {
           },
         }}
       >
-        {products.map((product, key) => {
+         { products.length > 1 &&  products.map((product, key) => {
           if (type === product.category) {
             return (
               <SwiperSlide key={key}>

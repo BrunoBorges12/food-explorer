@@ -1,6 +1,7 @@
 /frontend/node_modules
 /backend/venv
 /frontend/.vscode
+/.vscode
 # testing
 /frontend/coverage
 

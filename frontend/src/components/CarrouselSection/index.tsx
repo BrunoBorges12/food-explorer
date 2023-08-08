@@ -9,20 +9,10 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper";
 import { Card } from "./components/Card";
+import { products } from "@/types/products";
 
-type propsCarrousel = {
-  title: string;
-  type: string;
-  products: {
-    category: string;
-    description?: string;
-    img: string;
-    name: string;
-    price: number;
-    id: string;
-  }[];
-};
-export const CarrouselSection = ({ title, type, products }: propsCarrousel) => {
+
+export const CarrouselSection = ({ title, type, products }: products) => {
   return (
     <div>
       <h1 className="my-8 text-light-300 text-xl font-poppins">{title}</h1>

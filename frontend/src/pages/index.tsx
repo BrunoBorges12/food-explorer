@@ -4,9 +4,9 @@ import { Footer } from "@/components/Footer";
 import { NavBar } from "@/components/Navbar";
 import getProducts from "@/fetch/products";
 import { GetSessionParams, getSession } from "next-auth/react";
-import { product } from "../../types/products";
+import { products } from "../types/products";
 
-export default function Home({ products }: product) {
+export default function Home({ products }: products) {
   return (
     <>
       <NavBar />

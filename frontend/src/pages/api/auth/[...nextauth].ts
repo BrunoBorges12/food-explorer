@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-        // @ts-ignore
+// @ts-ignore
 
-import type { NextAuthOptions } from "next-auth"
+import type { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-  import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
       //@ts-ignore
       async authorize(credentials) {
         try {
-          const res = await fetch(`${process.env.BASE_URL_LOCAL}/login`  , {
+          const res = await fetch(`${process.env.BASE_URL_LOCAL}/login`, {
             method: "POST",
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },
@@ -38,15 +38,15 @@ export const authOptions: NextAuthOptions = {
   ],
   jwt: {
     secret: process.env.JWT_SECRET,
-            // @ts-ignore
+    // @ts-ignore
 
     async encode({ secret, token }) {
-      return jwt.sign(token, secret)
+      return jwt.sign(token || "", secret);
     },
-            // @ts-ignore
+    // @ts-ignore
 
     async decode({ secret, token }) {
-      return jwt.verify(token, secret)
+      return jwt.verify(token || "", secret);
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
@@ -55,10 +55,9 @@ export const authOptions: NextAuthOptions = {
     maxAge: 10 * 60, // 10 minutes
   },
   callbacks: {
-            // @ts-ignore
+    // @ts-ignore
 
     async jwt({ token, user }) {
-      
       if (user) {
         // @ts-ignore
 
@@ -66,7 +65,7 @@ export const authOptions: NextAuthOptions = {
       }
       return { ...token, ...user };
     },
-            // @ts-ignore
+    // @ts-ignore
 
     async session({ session, token }) {
       session.user = token;
@@ -74,14 +73,13 @@ export const authOptions: NextAuthOptions = {
 
       session.acessToken = token.data.token;
       return {
-        ...token, 
+        ...token,
         ...session,
         // @ts-ignore
         role: token.data.role,
       };
     },
   },
-  
 };
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);

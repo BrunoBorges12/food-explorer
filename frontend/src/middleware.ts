@@ -18,7 +18,6 @@ export async function middleware(req: NextRequest) {
   if (!req.cookies.get("next-auth.session-token")) {
     return NextResponse.redirect(url);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     const { accessToken } = jwt.decode(
       req.cookies.get("next-auth.session-token")?.value!
     ) as UserType;
@@ -26,8 +25,6 @@ export async function middleware(req: NextRequest) {
     // @ts-ignore
 
     if (token && Date.now() / 1000 < token?.exp) {
-      console.log("caiu aqui2");
-
       return NextResponse.next();
     } else {
       return NextResponse.redirect(new URL("/login", req.url));
@@ -36,5 +33,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", '/pedidos','/product/:path*'],
+  matcher: ["/", "/pedidos", "/product/:path*"],
 };

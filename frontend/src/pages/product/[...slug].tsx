@@ -7,6 +7,7 @@ import { getSession } from "next-auth/react";
 import { product } from "../../types/products";
 import getProduct from "@/fetch/product";
 import { GetServerSideProps } from "next";
+import { Footer } from "@/components/Footer";
 
 export default function ProductPage({ product, id }: product) {
   return (
@@ -23,6 +24,7 @@ export default function ProductPage({ product, id }: product) {
           <Product id={id} product={product} />
         </div>
       </Container>
+      <Footer />
     </>
   );
 }

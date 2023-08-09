@@ -19,6 +19,8 @@ const { TextArea } = Input;
 import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import getProduct from "@/fetch/product";
 
 interface formData {
   price: string;
@@ -45,6 +47,7 @@ export const FormPlate = ({ update }: propsFormaPlate) => {
   const [isNotFile, setIsNotFile] = useState(true);
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState();
+  const { data: client } = useSession();
 
   const router = useRouter();
 
@@ -52,6 +55,7 @@ export const FormPlate = ({ update }: propsFormaPlate) => {
   const onSubmit = async (data: formData) => {
     setLoading(true);
     if (!data.file) {
+      alert("aqui");
       return;
     }
 
@@ -63,21 +67,44 @@ export const FormPlate = ({ update }: propsFormaPlate) => {
     bodyFormData.append("file", data.file);
 
     try {
-      const result = await axios.post(
-        "http://127.0.0.1:5000/api/product",
-        bodyFormData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
+      if (!update) {
+        const result = await axios.post(
+          "http://127.0.0.1:5000/api/product",
+          bodyFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: "Bearer " + client?.acessToken,
+            },
+          }
+        );
+        if (result.status === 200) {
+          api.open({
+            message: "Dados Salvo com sucesso",
+          });
         }
-      );
+      } else {
+        const update = await axios.put(
+          `http://127.0.0.1:5000/api/product/${
+            router.query.slug && router.query.slug[0]
+          }`,
+          bodyFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: "Bearer " + client?.acessToken,
+            },
+          }
+        );
+        if (update.status === 200) {
+          api.open({
+            message: "Dados Salvo com sucesso",
+          });
+        }
+      }
       setTimeout(() => {
         setLoading(false);
       }, 1000);
-      if (result.status === 200) {
-        api.open({
-          message: "Dados Salvo com sucesso",
-        });
-      }
     } catch {
       setTimeout(() => {
         setLoading(false);
@@ -88,28 +115,38 @@ export const FormPlate = ({ update }: propsFormaPlate) => {
     }
   };
   const handlePreview = async (file: UploadFile) => {
+    console.log("ok");
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj as RcFile);
     }
   };
-  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
   const uploadButton = (
     <div className=" text-red-800  hidden">
       <PlusOutlined />
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
+  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
+    console.log(newFileList);
     setFileList(newFileList);
+  };
 
   useEffect(() => {
     if (update) {
+      setLoading(true);
       const fetchData = async () => {
         if (router.query.slug) {
           const response = await fetch(
-            `http://127.0.0.1:5000/api/product/${router.query.slug[0]}`
+            `http://127.0.0.1:5000/api/product/${router.query.slug[0]}`,
+            {
+              headers: {
+                Authorization: "Bearer " + client?.acessToken,
+                "content-Type": "application/json",
+              },
+            }
           );
           const json = await response.json();
+          console.log(json);
           setProduct(json);
           setFileList([
             {
@@ -117,19 +154,23 @@ export const FormPlate = ({ update }: propsFormaPlate) => {
               name: "image.png",
               status: "done",
               // @ts-ignore
-              url: `http://127.0.0.1:5000/uploaded_images/${json.img}`,
+              url: `http://127.0.0.1:5000/upload/${json.img}`,
             },
           ]);
+          setLoading(false);
+
           methods.setValue("description", json.description);
         }
       };
 
       fetchData();
     }
+    if (update) {
+      setIsNotFile(false);
+    }
   }, [router]);
-
   return (
-    <Spin wrapperClassName="z-[9] " spinning={!product} size="large">
+    <Spin wrapperClassName="z-[9] " spinning={loading} size="large">
       <Container className="py-24 ">
         {contextHolder}
         <div className="flex flex-col  font-poppins  text-light-300 lg:mt-8 ">
@@ -158,6 +199,10 @@ export const FormPlate = ({ update }: propsFormaPlate) => {
                       beforeUpload={(file) => {
                         setIsNotFile(false);
                         methods.setValue("file", file);
+                      }}
+                      data={{}}
+                      onDrop={(file) => {
+                        console.log(file);
                       }}
                       listType="picture-circle"
                       fileList={fileList}
@@ -198,7 +243,7 @@ export const FormPlate = ({ update }: propsFormaPlate) => {
                 <InputAntd
                   // @ts-ignore
 
-                  value={product?.price}
+                  value={product?.price ? product.price : ""}
                   className="lg:w-[223px] w-full"
                   name="price"
                   required={true}

@@ -37,7 +37,6 @@ export const InputAntd = ({
       setValue(name, value);
     }
   }, [value, setValue]);
-  console.log(name, getValues(name));
   return (
     <div className=" flex flex-col  gap-1">
       <label
